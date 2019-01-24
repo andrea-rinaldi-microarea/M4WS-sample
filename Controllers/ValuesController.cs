@@ -40,6 +40,18 @@ namespace M4WS_sample.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+
         }
+
+        [HttpGet("isAlive")]
+        public async Task<bool> IsAlive()
+        {
+            using (M4LoginManager.MicroareaLoginManagerSoapClient m4Login = new M4LoginManager.MicroareaLoginManagerSoapClient(M4LoginManager.MicroareaLoginManagerSoapClient.EndpointConfiguration.MicroareaLoginManagerSoap))
+            {
+                var data = await m4Login.IsAliveAsync();
+                return data;
+            }
+        }
+
     }
 }

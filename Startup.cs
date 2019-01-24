@@ -35,12 +35,11 @@ namespace M4WS_sample
             {
                 app.UseDeveloperExceptionPage();
             }
-            else
-            {
-                app.UseHsts();
-            }
+            // else
+            // {
+            //     app.UseHsts();
+            // }
 
-            // app.UseHttpsRedirection();
             app.UseMvc();
         }
     }

@@ -16,4 +16,8 @@
     <PackageReference Include="System.ServiceModel.Security" Version="4.5.*" />
   </ItemGroup>
 
+  <ItemGroup>
+    <DotNetCliToolReference Include="dotnet-svcutil" Version="1.0.*" />
+  </ItemGroup>
+  
 </Project>
