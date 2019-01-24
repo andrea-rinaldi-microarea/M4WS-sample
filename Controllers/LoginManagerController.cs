@@ -1,5 +1,7 @@
 using System.Threading.Tasks;
+using M4WS_sample.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 
 namespace M4WS_sample.Controllers
 {
@@ -7,11 +9,18 @@ namespace M4WS_sample.Controllers
     [ApiController]
     public class LoginManagerController : ControllerBase
     {
+        private IOptions<ConnectInfo> _connectInfo { get; }
+
+        public LoginManagerController(IOptions<ConnectInfo> connectInfo)
+        {
+            _connectInfo = connectInfo;
+        }
+
         private M4LoginManager.MicroareaLoginManagerSoapClient getLoginManager()
         {
             M4LoginManager.MicroareaLoginManagerSoapClient m4Login = new M4LoginManager.MicroareaLoginManagerSoapClient(M4LoginManager.MicroareaLoginManagerSoapClient.EndpointConfiguration.MicroareaLoginManagerSoap);
 
-            m4Login.Endpoint.Address = new System.ServiceModel.EndpointAddress("http://localhost/mago4/LoginManager/LoginManager.asmx");
+            m4Login.Endpoint.Address = new System.ServiceModel.EndpointAddress($"http://{_connectInfo.Value.Server}/{_connectInfo.Value.Instance}/LoginManager/LoginManager.asmx");
             
             return m4Login;
         }
