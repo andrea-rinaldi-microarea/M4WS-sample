@@ -37,10 +37,6 @@ namespace M4WS_sample
             {
                 app.UseDeveloperExceptionPage();
             }
-            // else
-            // {
-            //     app.UseHsts();
-            // }
 
             app.UseMvc();
         }
