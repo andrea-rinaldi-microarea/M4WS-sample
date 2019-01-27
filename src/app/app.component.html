@@ -1,3 +1,21 @@
-<h1>M4WS Sample Application</h1>
-<p *ngIf="isAlive">Mago4 ready</p>
-<p *ngIf="!isAlive">Mago4 not responding, please check your configuration</p>
+<nav class="navbar navbar-dark bg-dark">
+  <div>
+    <span class="navbar-brand mb0 h1">
+      M4WS Sample Application
+    </span>
+  </div>
+  <div class="navbar-nav" *ngIf="connStatus === connectionStatus.connected" placement="left" ngbTooltip="Connected to Mago4">
+      <i class="text-success fa fa-check-square"></i>
+  </div>
+  <div class="navbar-nav" *ngIf="connStatus === connectionStatus.connecting" placement="left" ngbTooltip="connecting ...">
+      <i class="text-primary fa fa-spinner fa-spin"></i>
+  </div>
+  <div class="navbar-nav" *ngIf="connStatus === connectionStatus.noConnection" placement="left" ngbTooltip="Mago4 not responding, please check your configuration">
+      <i class="text-danger fa fa-exclamation-triangle"></i>
+  </div>
+</nav>
+<div class="container">
+    <ngb-alert *ngIf="connStatus === connectionStatus.noConnection && !dismissed" type="danger" (close)="dismissed=true">
+      <strong>Error!</strong> Mago4 not responding, please check your configuration
+    </ngb-alert>
+</div>
