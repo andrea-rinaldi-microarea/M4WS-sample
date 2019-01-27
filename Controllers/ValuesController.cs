@@ -14,7 +14,7 @@ namespace M4WS_sample.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
-            return new string[] { "value1", "value2" };
+            return new string[] { "Hello", "World" };
         }
 
         // GET api/values/5
