@@ -17,5 +17,7 @@
 <div class="container">
     <ngb-alert *ngIf="connStatus === connectionStatus.noConnection && !dismissed" type="danger" (close)="dismissed=true">
       <strong>Error!</strong> Mago4 not responding, please check your configuration
+      <span class="m4-link" *ngIf="!details" role="button" (click)="details = true"><em>(more)</em></span>
+      <span *ngIf="details"><br>{{connMessages}}</span>
     </ngb-alert>
 </div>
