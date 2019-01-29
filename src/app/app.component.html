@@ -15,9 +15,51 @@
   </div>
 </nav>
 <div class="container">
-    <ngb-alert *ngIf="connStatus === connectionStatus.noConnection && !dismissed" type="danger" (close)="dismissed=true">
-      <strong>Error!</strong> Mago4 not responding, please check your configuration
-      <span class="m4-link" *ngIf="!details" role="button" (click)="details = true"><em>(more)</em></span>
-      <span *ngIf="details"><br>{{connMessages}}</span>
+  <ngb-alert *ngIf="connStatus === connectionStatus.noConnection && !dismissed" type="danger" (close)="dismissed=true">
+    <strong>Error!</strong> Mago4 not responding, please check your configuration
+    <span class="m4-link" *ngIf="!details" role="button" (click)="details = true"><em>(more)</em></span>
+    <span *ngIf="details"><br>{{connMessages}}</span>
+  </ngb-alert>
+  <div class="row mt-5">
+    <div class="col-6 offset-3">
+      <div class="card">
+        <div class="card-header">
+          Login
+        </div>
+        <div class="card-body">
+          <form>
+            <div class="form-group">
+              <label for="username">User</label>
+              <input type="text" class="form-control" id="username" name="username" placeholder="enter user name" [(ngModel)]="userName" (blur)="onUserChanged()">
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" class="form-control" id="password" name="password" placeholder="your password" [(ngModel)]="password">
+            </div>
+            <div class="form-group">
+                <label for="company">Company Name</label>
+                <select [(ngModel)]="company" class="form-control" id="company" name="company" placeholder="select company">
+                  <option [ngValue]="company" *ngFor="let company of companies">             
+                    {{company}}
+                  </option>
+                </select>
+                <small *ngIf="noCompanies" id="companyProblems" class="form-text text-danger">No companies associated with this user.</small>
+            </div>
+          </form>
+          <div class="float-right">
+            <button class="btn btn-primary mr-1" (click)="onLogin()">Login</button>
+            <button class="btn btn-secondary">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <ngb-alert *ngIf="loginErrors && !dismissed" type="danger" (close)="dismissed=true">
+      {{loginErrors}}
     </ngb-alert>
-</div>
+    <ngb-alert *ngIf="authToken != null" [dismissible]="false" type="success">
+      Sucessfully logged in
+    </ngb-alert>
+  </div>
+  </div>
