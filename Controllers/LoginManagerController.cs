@@ -81,5 +81,24 @@ namespace M4WS_sample.Controllers
                 return err;
             }
         }
+
+        [HttpPost("logout")]
+        public async Task<ActionResult<bool>> Logout(LogoutInfo info)
+        {
+            try 
+            {
+                using (M4LoginManager.MicroareaLoginManagerSoapClient m4Login = getLoginManager())
+                {
+                    await m4Login.LogOffAsync(info.AuthenticationToken);
+                    return true;
+                }
+            }
+            catch (System.Exception ex)
+            {
+                ContentResult err = Content(ex.Message);
+                err.StatusCode = 500;
+                return err;
+            }
+        }
     }
 }

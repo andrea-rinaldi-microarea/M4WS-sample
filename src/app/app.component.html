@@ -60,6 +60,7 @@
     </ngb-alert>
     <ngb-alert *ngIf="authToken != null" [dismissible]="false" type="success">
       Sucessfully logged in
+      <button class="btn btn-success" (click)="onLogout()">Logout</button>
     </ngb-alert>
   </div>
   </div>

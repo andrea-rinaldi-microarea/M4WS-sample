@@ -8,4 +8,9 @@ namespace M4WS_sample.Models
         public string Password { get; set; }
         public string Company { get; set; }
     }
+
+    public class LogoutInfo
+    {
+        public string AuthenticationToken { get; set; }
+    }
 }

@@ -61,4 +61,15 @@ export class AppComponent implements OnInit {
     });
 
   }
+
+  onLogout() {
+    this._httpClient.post('/api/loginManager/logout', {authenticationToken: this.authToken}).subscribe(() => {
+      this.authToken = null;
+      this.companies = [];
+      this.noCompanies = false;
+      this.company = "";
+      this.userName = "";
+      this.password = "";
+    });
+  }
 }
